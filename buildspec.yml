@@ -1,6 +1,10 @@
 version: 0.2
 
 run-as: root
+env:
+  secrets-manager:
+    db_url: hitesh-node-mongo:mongo-url	
+
              
 phases:
    pre_build:
@@ -9,7 +13,8 @@ phases:
         
    build:
       commands:
-          - echo "my commit"
+        - echo "mongo_db_url=${db_url}" >> .env
+        - npm install
           
             
 artifacts:
