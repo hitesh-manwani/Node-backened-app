@@ -4,7 +4,7 @@ status=$(sudo pm2 PID app)
 if [ $status == 0 ]; then
  echo "pm2 is not running go to install "
 else
-  cd /home/ubuntu/node-express-realworld-example-app
+  cd /home/ubuntu/Node-backened-app
   pm2 stop app.js
   echo "Server Stopped!!"
 fi
