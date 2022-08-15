@@ -1,5 +1,7 @@
 var http = require('http'),
+    https = require('https'),
     path = require('path'),
+    fs = require('fs'),
     methods = require('methods'),
     express = require('express'),
     bodyParser = require('body-parser'),
@@ -7,7 +9,10 @@ var http = require('http'),
     cors = require('cors'),
     passport = require('passport'),
     errorhandler = require('errorhandler'),
-    mongoose = require('mongoose');
+    mongoose = require('mongoose'),
+    dotenvvar = require('dotenv');
+
+dotenvvar.config({ path: path.join(__dirname, '.env') });
 
 var isProduction = process.env.NODE_ENV === 'production';
 
@@ -33,7 +38,7 @@ if (!isProduction) {
 if(isProduction){
   mongoose.connect(process.env.MONGODB_URI);
 } else {
-  mongoose.connect('mongodb://sqops:sqops321@10.0.3.182:27017,10.0.4.80:27017,10.0.4.79:27017/conduit?authSource=admin&replicaSet=rs10');
+  mongoose.connect(process.env.mongo_db_url);
   mongoose.set('debug', true);
 }
 
